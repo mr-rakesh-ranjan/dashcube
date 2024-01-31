@@ -1,49 +1,49 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Chart from 'chart.js/auto'
 
+const Charts = () => {
 
-const chartConfig = {
-    type: 'pie', // Use 'pie' type for a full pie chart
-    data: {
-        labels: ['Ngins', 'Tomcat', 'Apache', 'Category 4'],
-        datasets: [{
-            data: [44, 55, 13, 43],
-            backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384', '#4BC0C0'],
-            hoverOffset: 4 // Adjust the hover effect offset
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'right', // Position legend on the right side
-                align: 'start', // Align legend to the start of the chart
-            },
-            tooltip: {
-                callbacks: {
-                    label: function (context) {
-                        var label = context.label || '';
-                        if (label) {
-                            label += ': ';
+    const chartConfig = {
+        type: 'pie', // Use 'pie' type for a full pie chart
+        data: {
+            labels: ['Ngins', 'Tomcat', 'Apache', 'Category 4'],
+            datasets: [{
+                data: [44, 55, 13, 43],
+                backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384', '#4BC0C0'],
+                hoverOffset: 4 // Adjust the hover effect offset
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right', // Position legend on the right side
+                    align: 'start', // Align legend to the start of the chart
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed && context.parsed.toFixed) {
+                                label += context.parsed.toFixed(2);
+                            }
+                            return label;
                         }
-                        if (context.parsed && context.parsed.toFixed) {
-                            label += context.parsed.toFixed(2);
-                        }
-                        return label;
                     }
                 }
             }
         }
-    }
-};
+    };
 
-const Charts = () => {
     const chartContainer = useRef(null);
     const chartContainer2 = useRef(null);
     const [chartInstance, setChartInstance] = useState(null);
     const [chartInstance2, setChartInstance2] = useState(null);
-    
+
     useEffect(() => {
         const tempChartInstance = new Chart(chartContainer.current, chartConfig);
         if (chartContainer && chartContainer.current && chartContainer2 && chartContainer2.current) {
