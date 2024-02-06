@@ -1,2 +1,2 @@
-const baseURL = 'http://localhost:4040/'
+const baseURL = 'http://localhost:4040'
 export  default baseURL;
